@@ -1,5 +1,4 @@
-class Students:
-
+class Student:
     def __init__(self, student_id, name, course, year_level):
         self.student_id = student_id
         self.name = name
@@ -8,28 +7,28 @@ class Students:
 
     def display_student(self):
         print("-" * 30)
+        print("Student Information System")
+        print("-" * 30)
         print(f"Student ID: {self.student_id}")
-        print(f"Name: {self.name}")
+        print(f"Student Name: {self.name}")
         print(f"Course: {self.course}")
         print(f"Year Level: {self.year_level}")
         print("-" * 30)
 
 
 class StudentInformationSystem:
-
     def __init__(self):
         self.students = []
         self.next_id = 1
 
-    # ADD STUDENT
     def add_student(self):
-        print("\nAdd Student")
+        print("\nADD STUDENT")
 
-        name = input("Enter student name: ")
-        course = input("Enter student course: ")
-        year_level = input("Enter student year level: ")
+        name = input("Enter your Name: ")
+        course = input("Enter your Course: ")
+        year_level = input("Enter your Year Level: ")
 
-        student = Students(
+        student = Student(
             self.next_id,
             name,
             course,
@@ -39,7 +38,7 @@ class StudentInformationSystem:
         self.students.append(student)
         self.next_id += 1
 
-        print(f"\nStudent {name} added successfully!")
+        print(f"Student {name} added successfully!")
 
     def find_student(self, student_id):
         for student in self.students:
@@ -49,10 +48,10 @@ class StudentInformationSystem:
         return None
 
     def view_student(self):
-        print("\nView Students")
+        print("\nVIEW STUDENTS")
 
         if not self.students:
-            print("No students found.")
+            print("Student not found.")
             return
 
         for student in self.students:
@@ -60,16 +59,16 @@ class StudentInformationSystem:
             print()
 
     def update_student(self):
-        print("\nUpdate Student")
+        print("\nUPDATE STUDENT")
 
         if not self.students:
-            print("No students found.")
+            print("Student not found.")
             return
 
         try:
-            student_id = int(input("Enter student ID to update: "))
+            student_id = int(input("Enter Student ID: "))
         except ValueError:
-            print("Invalid input. Please enter a valid student ID.")
+            print("Invalid Student ID. Try Again!")
             return
 
         student = self.find_student(student_id)
@@ -78,27 +77,27 @@ class StudentInformationSystem:
             print(f"Student with ID {student_id} not found.")
             return
 
-        updated_name = input("Enter updated name: ")
-        updated_course = input("Enter updated course: ")
-        updated_year_level = input("Enter updated year level: ")
+        updated_name = input("Enter Updated Name: ")
+        updated_course = input("Enter Updated Course: ")
+        updated_year_level = input("Enter Updated Year Level: ")
 
         student.name = updated_name
         student.course = updated_course
         student.year_level = updated_year_level
 
-        print(f"Student {student_id} updated successfully!")
+        print(f"Student {student_id} is updated successfully!")
 
     def delete_student(self):
-        print("\nDelete Student")
+        print("\nDELETE STUDENT")
 
         if not self.students:
-            print("No students found.")
+            print("Student not found.")
             return
 
         try:
-            student_id = int(input("Enter student ID to delete: "))
+            student_id = int(input("Enter Student ID: "))
         except ValueError:
-            print("Invalid input. Please enter a valid student ID.")
+            print("Invalid Student ID. Try Again!")
             return
 
         student = self.find_student(student_id)
@@ -109,23 +108,12 @@ class StudentInformationSystem:
 
         self.students.remove(student)
 
-        print(f"Student {student_id} deleted successfully!")
-
-    def display_all_students(self):
-        print("\nAll Students")
-
-        if not self.students:
-            print("No students found.")
-            return
-
-        for student in self.students:
-            student.display_student()
-            print()
+        print(f"Student with ID {student_id} deleted successfully!")
 
     def run(self):
         while True:
             print("\n" + "-" * 30)
-            print("Student Information System")
+            print("STUDENT INFORMATION SYSTEM")
             print("-" * 30)
             print("1. Add Student")
             print("2. View Student")
@@ -135,29 +123,30 @@ class StudentInformationSystem:
             print("-" * 30)
 
             try:
-                choice = int(input("Enter your choice (1-5): "))
+                choose = int(input("Choose No. 1 to 5: "))
             except ValueError:
-                print("Invalid input. Please enter a number between 1 and 5.")
+                print("Invalid No. Try Again!")
                 continue
 
-            if choice == 1:
+            if choose == 1:
                 self.add_student()
 
-            elif choice == 2:
+            elif choose == 2:
                 self.view_student()
 
-            elif choice == 3:
+            elif choose == 3:
                 self.update_student()
 
-            elif choice == 4:
+            elif choose == 4:
                 self.delete_student()
 
-            elif choice == 5:
-                print("Exiting the program.")
+            elif choose == 5:
+                print("\nThank you for using the Student Information System!")
                 break
 
             else:
-                print("Invalid choice. Please try again.")
+                print("Invalid No. Try Again!")
+
 
 def main():
     system = StudentInformationSystem()
